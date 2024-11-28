@@ -13,7 +13,7 @@ from PIL import Image
 
 image = Image.open('dna-logo.jpg')
 
-st.image(image, use_column_width=True)
+st.image(image, use_container_width=True)
 
 st.write("""
 # DNA Nucleotide Count Web App
@@ -35,7 +35,12 @@ sequence_input = ">DNA Query 2\nGAACACGTGGAGGCAAACAGGAAGGTGAAGAAGAACTTATCCTATCAG
 
 #sequence = st.sidebar.text_area("Sequence input", sequence_input, height=250)
 sequence = st.text_area("Sequence input", sequence_input, height=250)
+
+st.subheader("sequence split")
+
 sequence = sequence.splitlines()
+sequence
+
 sequence = sequence[1:] # Skips the sequence name (first line)
 sequence = ''.join(sequence) # Concatenates list to string
 
@@ -70,10 +75,10 @@ X
 
 ### 2. Print text
 st.subheader('2. Print text')
-st.write('There are  ' + str(X['A']) + ' adenine (A)')
-st.write('There are  ' + str(X['T']) + ' thymine (T)')
-st.write('There are  ' + str(X['G']) + ' guanine (G)')
-st.write('There are  ' + str(X['C']) + ' cytosine (C)')
+st.write(f'There are  {str(X["A"])} adenine (A)')
+st.write(f'There are  {str(X["T"])} thymine (T)')
+st.write(f'There are  {str(X["G"])} guanine (G)')
+st.write(f'There are  {str(X["C"])} cytosine (C)')
 
 ### 3. Display DataFrame
 st.subheader('3. Display DataFrame')
