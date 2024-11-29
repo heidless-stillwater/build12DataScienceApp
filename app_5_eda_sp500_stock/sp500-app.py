@@ -18,7 +18,7 @@ st.sidebar.header('User Input Features')
 
 # Web scraping of S&P 500 data
 #
-@st.cache
+@st.cache_resource
 def load_data():
     url = 'https://en.wikipedia.org/wiki/List_of_S%26P_500_companies'
     html = pd.read_html(url, header = 0)
@@ -64,6 +64,8 @@ data = yf.download(
 
 # Plot Closing Price of Query Symbol
 def price_plot(symbol):
+  fig, ax = plt.subplots(figsize=(15,5))
+
   df = pd.DataFrame(data[symbol].Close)
   df['Date'] = df.index
   plt.fill_between(df.Date, df.Close, color='skyblue', alpha=0.3)
@@ -72,7 +74,7 @@ def price_plot(symbol):
   plt.title(symbol, fontweight='bold')
   plt.xlabel('Date', fontweight='bold')
   plt.ylabel('Closing Price', fontweight='bold')
-  return st.pyplot()
+  return st.pyplot(fig)
 
 num_company = st.sidebar.slider('Number of Companies', 1, 5)
 
