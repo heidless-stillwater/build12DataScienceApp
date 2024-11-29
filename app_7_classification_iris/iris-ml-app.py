@@ -27,6 +27,17 @@ df = user_input_features()
 
 st.subheader('User Input parameters')
 st.write(df)
+        
+# selectbox
+attribute_lst_sb = ["class", "lug_boot", "safety", "persons", "door", "maint", "buying"]
+attribute_select_sb = st.sidebar.selectbox('Attribute_SB', attribute_lst_sb, None)
+st.subheader(f"attribute_select_sb: {attribute_select_sb}")
+
+if attribute_select_sb:
+  st.write(f"SET: {attribute_select_sb}")
+else:
+  st.write(f"NOT SET: {attribute_select_sb}")
+
 
 iris = datasets.load_iris()
 X = iris.data
